@@ -47,7 +47,6 @@ func TestGetAPIKey(t *testing.T) {
 	}
 	
 	for _, tt := range tests {
-		t.Fatalf("testing failure case")
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
