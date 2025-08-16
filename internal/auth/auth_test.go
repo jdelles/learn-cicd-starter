@@ -13,21 +13,21 @@ func TestGetAPIKey(t *testing.T) {
 		want       string
 		wantErr    error
 		wantErrMsg string
-	} {
+	}{
 		{
 			name:    "ok - ApiKey scheme with token",
-			headers: http.Header{"Authorization": []string{"ApiKey abc123"},},
+			headers: http.Header{"Authorization": []string{"ApiKey abc123"}},
 			want:    "abc123",
 		},
-				{
+		{
 			name:    "error - no Authorization header present",
-			headers: http.Header{}, 
+			headers: http.Header{},
 			wantErr: ErrNoAuthHeaderIncluded,
 		},
 		{
-			name:       "error - empty Authorization header value",
-			headers:    http.Header{"Authorization": []string{""}},
-			wantErr:    ErrNoAuthHeaderIncluded,
+			name:    "error - empty Authorization header value",
+			headers: http.Header{"Authorization": []string{""}},
+			wantErr: ErrNoAuthHeaderIncluded,
 		},
 		{
 			name:       "error - wrong scheme (Bearer)",
@@ -45,7 +45,7 @@ func TestGetAPIKey(t *testing.T) {
 			wantErrMsg: "malformed authorization header",
 		},
 	}
-	
+
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
